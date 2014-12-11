@@ -1,0 +1,6 @@
+CHANGELOG v12.10.14.22.88
+
+Wouldn't compile without BinaryTree:: in front of rootPtr in BST.h
+Changed datatype to integer in main
+RECURSIVE BST INSERT FINALLY WORKS! Had to set it to return the node, 
+to either set it left or right, ughhh facepalm. 

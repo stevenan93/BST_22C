@@ -2,9 +2,12 @@
 // Created by Frank M. Carrano and Tim Henry.
 // modified by 
 
-#include "BinarySearchTree.h"  // BST ADT 
+
 #include <iostream>
 #include <string>
+
+#include "BinarySearchTree.h"  // BST ADT 
+#include "BinaryNode.h"
 using namespace std;
 
 // display function to pass to BST traverse functions
@@ -23,12 +26,21 @@ void check(bool success)
 
 int main()
 {
-	bool success;
+	//bool success;
 
 	// Part 1: inserting data in order:
-   BinarySearchTree<string>* tree1Ptr = new BinarySearchTree<string>();
+   BinarySearchTree<int>* tree1Ptr = new BinarySearchTree<int>();
    
-   tree1Ptr->insert("10");		// 10
+   tree1Ptr->insert(10);	
+   tree1Ptr->insert(20);
+   cout << "SIZE OF TREE: " << tree1Ptr->size() << endl;
+   BinaryNode<int>* curPtr = tree1Ptr->getRoot();
+   if(!curPtr->getRightPtr() && !curPtr->getLeftPtr())
+   {
+		cout << "Both of root are NULL\n";
+   }
+   cout << curPtr->getLeftPtr()->getItem();
+   /* 10
    tree1Ptr->insert("20");		//	 \ 
    tree1Ptr->insert("30");		//    20
    tree1Ptr->insert("40");		//		\ 
@@ -78,7 +90,7 @@ int main()
    tree1Ptr->postOrder(display);
    cout  << endl; 
 
-
+*/
 /*
    // Part 2: Inserting data in random order
    BinarySearchTree<string> tree2;

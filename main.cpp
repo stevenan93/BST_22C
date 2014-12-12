@@ -11,11 +11,12 @@
 using namespace std;
 
 // display function to pass to BST traverse functions
+/*
 void display(string & anItem)
 {
    cout << "Displaying item - " << anItem << endl;
 }  
-
+*/
 void check(bool success)
 {
    if (success)
@@ -23,6 +24,37 @@ void check(bool success)
    else
       cout << " Entry not in tree." << endl;
 }  
+
+void display(int & i)
+{
+	cout << i << ' ';
+}
+
+void depthTraversals(int choice, BinarySearchTree<int>* treePtr)
+{
+	switch(choice)
+	{
+		case 0:
+		{
+			treePtr->preOrder(display);
+			break;
+		}
+		case 1:
+		{
+			treePtr->inOrder(display);
+			break;
+		}
+		case 2:
+		{
+			treePtr->postOrder(display);
+			break;
+		}
+		default:
+			cout << "Error in depthTraversals\n";
+			break;
+	
+	}
+}
 
 int main()
 {
@@ -33,64 +65,32 @@ int main()
    
    tree1Ptr->insert(10);	
    tree1Ptr->insert(20);
+   tree1Ptr->insert(40);
+   tree1Ptr->insert(-10);
+   tree1Ptr->insert(-15);
    cout << "SIZE OF TREE: " << tree1Ptr->size() << endl;
-   BinaryNode<int>* curPtr = tree1Ptr->getRoot();
-   if(!curPtr->getRightPtr() && !curPtr->getLeftPtr())
-   {
-		cout << "Both of root are NULL\n";
-   }
-   cout << curPtr->getLeftPtr()->getItem();
-   /* 10
-   tree1Ptr->insert("20");		//	 \ 
-   tree1Ptr->insert("30");		//    20
-   tree1Ptr->insert("40");		//		\ 
-   tree1Ptr->insert("50");		//		 30
-								//		   \ 
-								//          40
-							    //			  \
-							    //			   50
+   //BinaryNode<int>* curPtr = tree1Ptr->getRoot();
 
-   cout << "Tree 1 Preorder: Should be 10 20 30 40 50\n";
+   cout << "Tree 1 Preorder: Should be 10 -10 -15 20 40\n";
    tree1Ptr->preOrder(display);   
-   cout << "Tree 1 Inorder: Should be 10 20 30 40 50\n";
+   cout << "\nTree 1 Inorder: Should be -10 -15 10 20 40\n";
    tree1Ptr->inOrder(display);  
-   cout << "Tree 1 Postorder: Should be 50 40 30 20 10\n";
+   cout << "\nTree 1 Postorder: Should be -10 -15 20 40 10\n";
    tree1Ptr->postOrder(display);
    cout  << endl;   
-
-   cout << "Remove the leaf 50: ";
-   success = tree1Ptr->remove("50");
-   check(success);
    
-   cout << "Try to remove the leaf 50 again: ";
-   success = tree1Ptr->remove("50");
-   check(success);
-   
-   cout << "Remove the node 40 that has only a right child: ";
-   success = tree1Ptr->remove("40");
-   check(success);
-   
-   cout << "Tree 1 Preorder: Should be 10 20 30\n";		
-   tree1Ptr->preOrder(display);							
-   cout << "Tree 1 Inorder: Should be 10 20 30\n";		
-   tree1Ptr->inOrder(display);							      
-   cout << "Tree 1 Postorder: Should be 30 20 10\n";
-   tree1Ptr->postOrder(display);  
-   cout  << endl;   
-   
-   cout << "Remove the root 10 (has a right subtree): ";
-   success = tree1Ptr->remove("10");
-   check(success);
-   
-   cout << "Tree 1 Preorder: Should be 20 30\n";
-   tree1Ptr->preOrder(display);  
-   cout << "Tree 1 Inorder: Should be 20 30\n";
-   tree1Ptr->inOrder(display);   
-   cout << "Tree 1 Postorder: Should be 30 20\n";
+   tree1Ptr->clear();
+      cout << "Tree 1 Preorder: Should be 10 -10 -15 20 40\n";
+   tree1Ptr->preOrder(display);   
+   cout << "\nTree 1 Inorder: Should be -10 -15 10 20 40\n";
+   tree1Ptr->inOrder(display);  
+   cout << "\nTree 1 Postorder: Should be -10 -15 20 40 10\n";
    tree1Ptr->postOrder(display);
-   cout  << endl; 
+   cout  << endl;   
+cout << "SIZE OF TREE: " << tree1Ptr->size() << endl;
+ 
 
-*/
+
 /*
    // Part 2: Inserting data in random order
    BinarySearchTree<string> tree2;

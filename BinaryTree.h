@@ -22,12 +22,13 @@ public:
 	BinaryTree & operator = (const BinaryTree & sourceTree);
    
 	// common functions for all binary trees
- 	bool isEmpty() const	{return count == 0;}
+ 	bool isEmpty() const	{return rootPtr == NULL && count == 0;}
 	int size() const	    {return count;}
 	void clear()			{destroyTree(rootPtr); rootPtr = 0; count = 0;}
-	void preOrder(void visit(ItemType &)) const {_preorder(visit, rootPtr);}
-	void inOrder(void visit(ItemType &)) const  {_inorder(visit, rootPtr);}
-	void postOrder(void visit(ItemType &)) const{_postorder(visit, rootPtr);}
+	void preOrder(void visit(ItemType &)) const;
+	void inOrder(void visit(ItemType &)) const;
+	void postOrder(void visit(ItemType &)) const;
+	
 
 	// abstract functions to be implemented by derived class
 	virtual bool insert(const ItemType & newData) = 0; 
@@ -42,13 +43,48 @@ private:
 	BinaryNode<ItemType>* copyTree(const BinaryNode<ItemType>* nodePtr);
 
 	// internal traverse
-	void _preorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
-	void _inorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
-	void _postorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
+	void _preOrder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
+	void _inOrder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
+	void _postOrder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const;
    
 }; 
 
 //////////////////////////////////////////////////////////////////////////
+template<class ItemType>
+void BinaryTree<ItemType>::preOrder(void visit(ItemType &)) const
+{
+	if(isEmpty())
+	{
+		std::cout << "Tree is empty\n";
+		return;
+	}
+	_preOrder(visit, rootPtr);
+	std::cout << '\n';
+}
+
+template<class ItemType>
+void BinaryTree<ItemType>::inOrder(void visit(ItemType &)) const
+{
+	if(isEmpty())
+	{
+		std::cout << "Tree is empty\n";
+		return;
+	}
+	_inOrder(visit, rootPtr);
+	std::cout << '\n';
+}
+
+template<class ItemType>
+void BinaryTree<ItemType>::postOrder(void visit(ItemType &)) const
+{
+	if(isEmpty())
+	{
+		std::cout << "Tree is empty\n";
+		return;
+	}
+	_postOrder(visit, rootPtr);
+	std::cout << '\n';
+}
 
 template<class ItemType>
 BinaryNode<ItemType>* BinaryTree<ItemType>::copyTree(const BinaryNode<ItemType>* nodePtr) 
@@ -62,31 +98,60 @@ BinaryNode<ItemType>* BinaryTree<ItemType>::copyTree(const BinaryNode<ItemType>*
 template<class ItemType>
 void BinaryTree<ItemType>::destroyTree(BinaryNode<ItemType>* nodePtr)
 {
-
+	if(!nodePtr)
+	{
+		return;
+	}
+	else if(!nodePtr->getRightPtr() && !nodePtr->getLeftPtr())
+	{
+		delete nodePtr;
+		return;
+	}
+	if(nodePtr->getRightPtr())
+	{
+		destroyTree(nodePtr->getRightPtr());
+	}
+	else if(nodePtr->getLeftPtr())
+	{
+		destroyTree(nodePtr->getLeftPtr());
+	}
+		
 }  
 
 template<class ItemType>
-void BinaryTree<ItemType>::_preorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
+void BinaryTree<ItemType>::_preOrder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
 {
-	if (nodePtr != 0)
+	if (nodePtr)
 	{
 		ItemType item = nodePtr->getItem();
 		visit(item);
-		_preorder(visit, nodePtr->getLeftPtr());
-		_preorder(visit, nodePtr->getRightPtr());
+		_preOrder(visit, nodePtr->getLeftPtr());
+		_preOrder(visit, nodePtr->getRightPtr());
 	} 
 }  
 
 template<class ItemType>
-void BinaryTree<ItemType>::_inorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
+void BinaryTree<ItemType>::_inOrder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
 {
-
+	if (nodePtr)
+	{
+		ItemType item = nodePtr->getItem();
+		_preOrder(visit, nodePtr->getLeftPtr());
+		visit(item);
+		_preOrder(visit, nodePtr->getRightPtr());
+	} 
 }  
 
 template<class ItemType>
-void BinaryTree<ItemType>::_postorder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
+void BinaryTree<ItemType>::_postOrder(void visit(ItemType &), BinaryNode<ItemType>* nodePtr) const
 {
-
+	if (nodePtr)
+	{
+		ItemType item = nodePtr->getItem();
+		_preOrder(visit, nodePtr->getLeftPtr());
+		_preOrder(visit, nodePtr->getRightPtr());
+		visit(item);
+	} 
 }  
 
 template<class ItemType>

@@ -1,3 +1,14 @@
+CHANGELOG v12.11.14.19.53
+
+-Added Depth First Traversals
+-Main modifications to test class further
+-Remove tested -> works!
+-DestroyTree works
+-Changed isEmpty to check for rootPtr being NULL, as well as the itemCount being equal to 0 as well. 
+-Added various newline characters to 'spiffy' up the program
+-Added 'Tree is Empty' error message
+
+
 CHANGELOG v12.10.14.22.88
 
 Wouldn't compile without BinaryTree:: in front of rootPtr in BST.h

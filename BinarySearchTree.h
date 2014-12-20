@@ -25,6 +25,7 @@ private:
    
 	// search for target node
 	BinaryNode<ItemType>* findNode(BinaryNode<ItemType>* treePtr, const ItemType & target) const;
+	
    
 public:  
 	// insert a node at the correct location
@@ -61,7 +62,13 @@ bool BinarySearchTree<ItemType>::remove(const ItemType & target)
 template<class ItemType>
 bool BinarySearchTree<ItemType>::getEntry(const ItemType& anEntry, ItemType & returnedItem) const
 {
-	return true;
+	BinaryNode<ItemType>* searchTerm = findNode(getRoot(), anEntry);
+	if(searchTerm)
+	{	
+		returnedItem = findNode(getRoot(), anEntry)->getItem();
+		return true;
+	}
+	return false;
 }  
 
 
@@ -168,8 +175,24 @@ template<class ItemType>
 BinaryNode<ItemType>* BinarySearchTree<ItemType>::findNode(BinaryNode<ItemType>* nodePtr,
                                                            const ItemType & target) const 
 {
-
+	if(!nodePtr)
+	{
+		return NULL;
+	}
+	if(target < nodePtr->getItem())
+	{
+		return findNode(nodePtr->getLeftPtr(), target);
+	}
+	else
+	{
+		if(target > nodePtr->getItem())
+		{
+			return findNode(nodePtr->getRightPtr(), target);
+		}
+		else
+		{
+			return nodePtr;
+		}
+	}
 }  
-
-
 #endif

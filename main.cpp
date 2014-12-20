@@ -69,113 +69,19 @@ int main()
    tree1Ptr->insert(-10);
    tree1Ptr->insert(-15);
    cout << "SIZE OF TREE: " << tree1Ptr->size() << endl;
-   //BinaryNode<int>* curPtr = tree1Ptr->getRoot();
-
-   cout << "Tree 1 Preorder: Should be 10 -10 -15 20 40\n";
-   tree1Ptr->preOrder(display);   
-   cout << "\nTree 1 Inorder: Should be -10 -15 10 20 40\n";
-   tree1Ptr->inOrder(display);  
-   cout << "\nTree 1 Postorder: Should be -10 -15 20 40 10\n";
-   tree1Ptr->postOrder(display);
-   cout  << endl;   
-   
-   tree1Ptr->clear();
-      cout << "Tree 1 Preorder: Should be 10 -10 -15 20 40\n";
-   tree1Ptr->preOrder(display);   
-   cout << "\nTree 1 Inorder: Should be -10 -15 10 20 40\n";
-   tree1Ptr->inOrder(display);  
-   cout << "\nTree 1 Postorder: Should be -10 -15 20 40 10\n";
-   tree1Ptr->postOrder(display);
-   cout  << endl;   
-cout << "SIZE OF TREE: " << tree1Ptr->size() << endl;
- 
+	
+   int search;
+   if(tree1Ptr->getEntry(0, search))
+   {
+        cout << "FOUND\n";
+   }
+   else
+   {
+		cout << "NOT FOUND\n";
+   }
 
 
-/*
-   // Part 2: Inserting data in random order
-   BinarySearchTree<string> tree2;
-   
-   tree2.insert("40");
-   tree2.insert("20");
-   tree2.insert("10");
-   tree2.insert("60");
-   tree2.insert("50");
-   tree2.insert("70");
-   tree2.insert("30");
-   tree2.insert("80");
-  
-   //       40
-   //     /     \
-   //    20     60
-   //   /  \   /  \
-   //  10  30 50  70
-   //               \
-   //               80
-
-   cout << "Tree 2 Preorder: Should be 40 20 10 30 60 50 70 80\n";
-   tree2.preOrder(display);  
-   cout << "Tree 2 Inorder: Should be 10 20 30 40 50 60 70 80\n";
-   tree2.inOrder(display);   
-   cout << "Tree 2 Postorder: Should be 10 30 20 50 80 70 60 40\n";
-   tree2.postOrder(display);
-   cout  << endl;       
-
-   cout << "Remove the node 70 that has only a right child: ";
-   success = tree2.remove("70");
-   check(success);
-   //        40
-   //     /     \
-   //    20     60
-   //   /  \   /  \
-   //  10  30 50  80
-   
-   cout << "Tree 2 Inorder: Should be 10 20 30 40 50 60 80\n";
-   tree2.inOrder(display);   
-   cout  << endl;      
-
-   cout << "Remove the node 60 that has two children: ";
-   success = tree2.remove("60");
-   check(success);
-   //        40
-   //     /     \
-   //    20     80
-   //   /  \   /
-   //  10  30 50
-   
-   cout << "Tree 2 Inorder: Should be 10 20 30 40 50 80\n";
-   tree2.inOrder(display);   
-   cout  << endl; 
-
-   cout << "Remove the leaf 10: ";
-   success = tree2.remove("10");
-   check(success);
-   //        40
-   //     /     \
-   //    20     80
-   //      \   /
-   //      30 50
-   
-   cout << "Tree 2 Inorder: Should be 20 30 40 50 80\n";
-   tree2.inOrder(display);   
-   cout  << endl;     
-
-   cout << "Remove the root 40: ";
-   success = tree2.remove("40");
-   check(success);
-   //      50
-   //     /  \
-   //    20   80
-   //      \
-   //      30
-   
-   cout << "Tree 2 Inorder: Should be 20 30 50 80\n";
-   tree2.inOrder(display);   
-   cout  << endl; 
-
-   string returnedString;
-   cout << "Searching for node 80 returns " << tree2.getEntry("80", returnedString) << endl;
-   cout << "Searching for node 40 returns " << tree2.getEntry("40", returnedString) << endl;
-*/
+	
 
 /*
    // Part 3: Copying trees

@@ -1,3 +1,11 @@
+CHANGELOG v12.20.14.02.57
+
+-Added recursive BST search
+-Removed redundant tests in main.cpp
+-Just need to add "larger than" function
+-Added default c_tor to BinaryNode
+
+
 CHANGELOG v12.11.14.19.53
 
 -Added Depth First Traversals
